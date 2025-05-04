@@ -63,10 +63,10 @@ class Game {
   // Validate and process guess
   playersGuessSubmission(num) {
     if (typeof(num)!=="number"){
-      throw "This is an invalid input";
+      throw "That is an invalid guess.";
     }
     if (num<1 || num>100){
-      throw "This is an invalid input";
+      throw "That is an invalid guess.";
     }
 
     this.playersGuess=num;
@@ -79,27 +79,27 @@ class Game {
   // Evaluate guess and return feedback message
   checkGuess() {
     if (this.playersGuess===this.winningNumber){
-      return "You win";
+      return "You Win!";
     }
     if (this.pastGuesses.includes(this.playersGuess)){
-      return "You already used this number";
+      return "You have already guessed that number.";
     }
     this.pastGuesses.push(this.playersGuess);
 
-    if (this.pastGuesses.length ===3 ){
-      return `You lost. The number was ${this.winningNumber}`;
+    if (this.pastGuesses.length ===5 ){
+      return "You Lose.";
     }
     if (Math.abs(this.playersGuess-this.winningNumber)<10){
-      return "You're burning up";
+      return "You're burning up!";
     }
     if (Math.abs(this.playersGuess-this.winningNumber)<25){
-      return "You're lukewarm";
+      return "You're lukewarm.";
     }
     if (Math.abs(this.playersGuess-this.winningNumber)<50){
-      return "You're a bit chilly";
+      return "You're a bit chilly.";
     }
     if (Math.abs(this.playersGuess-this.winningNumber)<100){
-      return "You're ice cold";
+      return "You're ice cold!";
     }
     
 
@@ -109,6 +109,8 @@ class Game {
     // Handle max guesses
     // Return temperature feedback
   }
+
+
 
   // Generate array with 3 numbers (winning + 2 random)
   provideHint() {
@@ -120,6 +122,10 @@ class Game {
     ];
     return shuffle(hintArray);
   }
+}
+
+function newGame(){
+  return new Game;
 }
 
 // DOM Setup - Implement event listeners
@@ -146,7 +152,7 @@ subBtn.addEventListener("click", () => {
   displayMessage(message);
 
   if (message.includes("win") || message.includes("lost")) {
-    submitBtn.disabled = true;
+    subBtn.disabled = true;
     input.disabled = true;
   }
 
@@ -155,15 +161,15 @@ subBtn.addEventListener("click", () => {
 
 hintBtn.addEventListener("click", () => {
   const hints = game.provideHint();
-  displayMessage(`One of these is correct: ${hints} BITCH!`);
+  displayMessage(`One of these is correct: ${hints}`);
 
 });
 
 restBtn.addEventListener("click", () => {
-  game = new Game();
+  game = newGame();
   input.value = "";
   input.disabled = false;
-  submitBtn.disabled = false;
+  subBtn.disabled = false;
   displayMessage("New game started! Enter your guess.");
   
   
