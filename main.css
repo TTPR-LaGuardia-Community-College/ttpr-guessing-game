@@ -1,1 +1,90 @@
-/* Write your CSS code in this file */
+/* Minimal Anime-Inspired Theme */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+
+body {
+  font-family: 'Roboto Mono', monospace;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #f0f0f0;
+  text-align: center;
+  padding: 40px;
+  margin: 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff88;
+  margin-bottom: 30px;
+}
+
+input[type="number"] {
+  font-size: 1.2rem;
+  padding: 10px;
+  width: 200px;
+  border: none;
+  border-bottom: 2px solid #00bcd4;
+  background-color: transparent;
+  color: #fff;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input[type="number"]:focus {
+  border-bottom: 2px solid #00e5ff;
+}
+
+button {
+  font-size: 1rem;
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: transparent;
+  border: 2px solid #00bcd4;
+  color: #00e5ff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background-color: #00bcd4;
+  color: #000;
+  box-shadow: 0 0 10px #00e5ff88;
+}
+
+#hintButton {
+  border-color: #ff5722;
+  color: #ff7043;
+}
+
+#hintButton:hover {
+  background-color: #ff5722;
+  color: #fff;
+}
+
+#resetButton {
+  border-color: #cddc39;
+  color: #d4e157;
+}
+
+#resetButton:hover {
+  background-color: #cddc39;
+  color: #000;
+}
+
+#messageArea {
+  margin-top: 30px;
+  font-size: 1.3rem;
+  color: #ffeb3b;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border: 1px solid #00bcd4;
+  border-radius: 8px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 10px #00bcd4aa;
+}
