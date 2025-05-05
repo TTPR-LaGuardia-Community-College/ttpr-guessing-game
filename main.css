@@ -28,7 +28,16 @@ h4 {
 
 .guess {
     text-align: center;
-    margin: 48px;
+    margin: 32px;
+}
+
+#guessInput {
+    background: transparent;
+    border: transparent;
+    font-size: 80px;
+    padding: 50px;
+    text-align: center;
+    width: 400px;
 }
 
 .row {
@@ -43,7 +52,7 @@ li {
 
 #guesses {
     text-align: center;
-    margin-top: 10%;
+    margin-top: 5%;
     margin-bottom: 10%;
 }
 
@@ -53,11 +62,11 @@ li {
 
 .guess-buttons {
     text-align: center;
+    margin-top: 5%;
 }
 
 .message {
     text-align: center;
-    margin-top: 10%;
-    margin-bottom: 10%;
     font-size: 150%;
+    margin: 8%;
 }
