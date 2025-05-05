@@ -26,5 +26,11 @@ li {
 #guesses {
     position: relative;
     margin-top: 10%;
+    margin-bottom: 10%;
+    margin-left: 10%;
+}
+
+.guess-buttons {
+    position: relative;
     margin-left: 10%;
 }
