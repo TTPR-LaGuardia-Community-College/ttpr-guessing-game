@@ -30,7 +30,18 @@ li {
     margin-left: 10%;
 }
 
+.buttons {
+    margin: 10px;
+}
+
 .guess-buttons {
     position: relative;
-    margin-left: 10%;
+    margin-left: 8%;
+}
+
+.message {
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    font-size: 150%;
 }
