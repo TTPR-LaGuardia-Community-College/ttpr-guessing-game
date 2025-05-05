@@ -1,8 +1,18 @@
 .window {
+    width: 500px;
     position: fixed;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
+}
+
+h2 {
+    margin: 16px;
+}
+
+h4 {
+    margin: 16px;
+    font-weight: lighter;
 }
 
 .header {
@@ -11,6 +21,7 @@
 
 .guess {
     text-align: center;
+    margin: 48px;
 }
 
 .row {
@@ -24,10 +35,9 @@ li {
 }
 
 #guesses {
-    position: relative;
+    text-align: center;
     margin-top: 10%;
     margin-bottom: 10%;
-    margin-left: 10%;
 }
 
 .buttons {
@@ -35,8 +45,7 @@ li {
 }
 
 .guess-buttons {
-    position: relative;
-    margin-left: 8%;
+    text-align: center;
 }
 
 .message {
