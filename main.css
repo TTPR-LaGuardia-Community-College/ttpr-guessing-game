@@ -15,5 +15,16 @@
 
 .row {
     display: flex;
-    flex-wrap: wrap;
+}
+
+li {
+    list-style-type: none;
+    width: 100%;
+    font-size: 200%;
+}
+
+#guesses {
+    position: relative;
+    margin-top: 10%;
+    margin-left: 10%;
 }
