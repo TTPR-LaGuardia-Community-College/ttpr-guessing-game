@@ -1,1 +1,38 @@
 /* Write your CSS code in this file */
+
+
+body {
+
+    background-color: aqua;
+
+}
+
+
+
+.input-field {
+
+    display: block;
+    margin: auto;
+
+
+}
+
+
+.input-field input {
+
+    margin-top: 20%;
+
+    font-size: 50px;
+    border-radius: 10px;
+}
+
+.input-field button {
+
+    margin-top: 20px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 100px;
+    height: 35px;
+    display: inline-flexbox;
+    flex-direction: row;
+}
