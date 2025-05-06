@@ -1,18 +1,3 @@
-/* 
-
-Write your guess-game code here! Don't forget to look at the test specs as a guide. You can run the specs
-by running "testem".
-
-In this file, you will also include the event listeners that are needed to interact with your HTML file when
-a user clicks a button or adds a guess to the input field.
-
-*/
-
-/* 
-NUMBER GUESSING GAME
-Implement the missing code based on the comments
-*/
-
 // Generate random number between 1-100 (inclusive)
 function generateWinningNumber() {
   return Math.floor(Math.random() * 100) + 1;
@@ -83,29 +68,21 @@ class Game {
       return "You Lose.";
     }
 
-    let diff = this.difference();
-
-    if(diff < 10) {
-      return "You're burning up!";
-    }
-    else if(diff < 25) {
-      return "You're lukewarm.";
-    }
-    else if(diff < 50) {
-      return "You're a bit chilly.";
-    }
-    else if(diff < 100) {
-      return "You're ice cold!";
-    }
+    const diff = this.difference();
+    if(diff < 10) return "You're burning up!";
+    else if(diff < 25) return "You're lukewarm.";
+    else if(diff < 50) return "You're a bit chilly.";
+    else if(diff < 100) return "You're ice cold!";
   }
 
   // Generate array with 3 numbers (winning + 2 random)
   provideHint() {
     // Create array and shuffle
-    let hintArray = new Array();
-    hintArray.push(this.winningNumber);
-    hintArray.push(generateWinningNumber());
-    hintArray.push(generateWinningNumber());
+    let hintArray = [
+      this.winningNumber,
+      generateWinningNumber(),
+      generateWinningNumber()
+    ]
     shuffle(hintArray);
     return hintArray;
   }
@@ -140,7 +117,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let div = document.getElementById("message");
 
   submitButton.addEventListener("click", () => {
-    let guess = Number(inputField.value);
+    const guess = Number(inputField.value);
+    if(Number.isNaN(guess)) {
+      div.innerHTML = "Invalid number!";
+      return;
+    }
     let message = game.playersGuessSubmission(guess);
     div.innerHTML = message;
     for(let i = 0; i < game.pastGuesses.length; ++i) {
@@ -161,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   hintButton.addEventListener("click", () => {
-    let hintArray = game.provideHint();
+    const hintArray = game.provideHint();
     div.innerHTML = "Possible Numbers: ";
     div.innerHTML += hintArray;
   })
