@@ -68,7 +68,7 @@ class Game {
         // Handle win condition
         if (this.playersGuess === this.winningNumber) {
             this.pastGuesses.push(this.winningNumber);
-            confetti();
+            //confetti();
             return 'You Win!';
         }
         // Handle duplicate guess
@@ -128,6 +128,10 @@ document.addEventListener("DOMContentLoaded", () => {
     guessButton.addEventListener("click", function () {
         const number = Number(guessInput.value);
         const answerBoxes = document.querySelectorAll('.answer');
+        if(game.pastGuesses.includes(game.winningNumber)) {
+            quote.innerHTML = "You've already won! Please start a new game.";
+            return;
+        }
         if (game.pastGuesses.length >= 5) {
             quote.innerHTML = "You've lost the game! Please start a new game.";
             return;
@@ -137,6 +141,9 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             // quote.innerHTML = game.checkGuess();
             quote.innerHTML = game.playersGuessSubmission(number);
+            if (game.pastGuesses.includes(game.winningNumber)) {
+                confetti();
+            }
             answerBoxes[game.pastGuesses.length - 1].innerHTML = number;
         }
         guessInput.value = '';
