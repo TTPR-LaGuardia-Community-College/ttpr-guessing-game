@@ -48,12 +48,13 @@ li {
     list-style-type: none;
     width: 100%;
     font-size: 200%;
+    font-family: "Pixelated MS Sans Serif";
+    font-size: 32px;
 }
 
 #guesses {
     text-align: center;
-    margin-top: 5%;
-    margin-bottom: 10%;
+    margin: 7%;
 }
 
 .buttons {
@@ -65,8 +66,8 @@ li {
     margin-top: 5%;
 }
 
-.message {
+#message {
     text-align: center;
     font-size: 150%;
-    margin: 8%;
+    margin: 10%;
 }

@@ -60,7 +60,7 @@ class Game {
       throw "That is an invalid guess.";
     }
     this.playersGuess = num;
-    return this.checkGuess(this.playersGuess);
+    return this.checkGuess();
   }
 
   // Evaluate guess and return feedback message
@@ -128,5 +128,41 @@ document.addEventListener("DOMContentLoaded", () => {
   // - Display updates
   // - Game state management
   let game = newGame();
-  
+
+  let inputField = document.getElementById("guessInput");
+  inputField.autocomplete = "off";
+  let pastGuessesRow = document.getElementsByClassName("before");
+
+  let submitButton = document.getElementById("submit");
+  let resetButton = document.getElementById("reset");
+  let hintButton = document.getElementById("hint");
+
+  let div = document.getElementById("message");
+
+  submitButton.addEventListener("click", () => {
+    let guess = Number(inputField.value);
+    let message = game.playersGuessSubmission(guess);
+    div.innerHTML = message;
+    for(let i = 0; i < game.pastGuesses.length; ++i) {
+      pastGuessesRow[i].innerHTML = game.pastGuesses[i];
+    }
+    if(game.pastGuesses.length === 5) {
+      submitButton.disabled = true;
+    }
+  })
+
+  resetButton.addEventListener("click", () => {
+    game = new Game();
+    submitButton.disabled = false;
+    for(let i = 0; i < pastGuessesRow.length; ++i) {
+      pastGuessesRow[i].innerHTML = "?";
+    }
+    div.innerHTML = "Please enter a number.";
+  })
+
+  hintButton.addEventListener("click", () => {
+    let hintArray = game.provideHint();
+    div.innerHTML = "Possible Numbers: ";
+    div.innerHTML += hintArray;
+  })
 });
