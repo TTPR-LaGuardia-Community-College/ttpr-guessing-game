@@ -1,22 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>Guessing Game</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Number Guessing Game!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css">
-    <!-- the MAIN.CSS file is linked here -->
-  </head>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body class="w-md-100 w-auto">
+<h1 class="container text-center mt-2 game-title">Guess a number!</h1>
+<p class="between text-center quote">(Between 1 and 100)</p>
 
-  <body>
+<section class="container d-flex flex-column align-items-center justify-content-center text-center">
+    <!--    <label>-->
+    <!--        <input type="number" class="bg-dark text-center text-white border-light border-5 rounded guess-input" placeholder="?"-->
+    <!--               style="height: 25vh; width: 40%; padding: 5px; font-size: 1.5rem;">-->
+    <!--    </label>-->
+    <section class="container d-flex flex-column align-items-center justify-content-center text-center">
+        <input type="number" class="bg-dark text-center text-white border-light border-5 rounded"
+               id="guess-input"
+               placeholder="?"
+               style="height: 20vh; width: 35%; padding: 5px; font-size: 1.5rem;">
+        <button class="btn btn-dark border-white m-2 guess-button p-lg-0 p-5 d-flex justify-content-center align-items-center"
+        >Submit Guess
+        </button>
+    </section>
+
+</section>
+
+<section id="answer-history" class="container text-center">
+    <div class="row justify-content-center">
+        <div class="col-lg-2 col-md-4 col-6 answer">?</div>
+        <div class="col-lg-2 col-md-4 col-6 answer">?</div>
+        <div class="col-lg-2 col-md-4 col-6 answer">?</div>
+        <div class="col-lg-2 col-md-4 col-6 answer">?</div>
+        <div class="col-lg-2 col-md-4 col-6 answer">?</div>
+    </div>
+</section>
+
+<section class="container text-center">
+    <div class="row justify-content-center">
+        <button class="btn btn-dark border-white col-3 mx-1 reset-btn">Reset</button>
+        <button class="btn btn-dark border-white col-3 mx-1 hint-btn">Hint</button>
+    </div>
+
+    <div class="row justify-content-center mt-1">
+        <div class="col-auto hint">!</div>
+        <div class="col-auto hint">!</div>
+        <div class="col-auto hint">!</div>
+    </div>
+</section>
 
 
-
-
-
-    <!-- <script src='js/guessing-game.js'></script> -->
-    <!-- uncomment the script tag above when you are ready to add JavaScript to your document -->
-
-  </body>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+<script src="js/guessing-game.js"></script>
+</body>
 </html>

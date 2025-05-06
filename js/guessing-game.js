@@ -27,11 +27,14 @@ function shuffle(array) {
     }
     return array;
 }
+
 class Game {
     constructor() {
         this.playersGuess = null;
         this.pastGuesses = [];
         this.winningNumber = generateWinningNumber();
+        this.hintUsed = false;
+
         // Game.prototype.checkGuess();
     }
 
@@ -64,21 +67,22 @@ class Game {
     checkGuess() {
         // Handle win condition
         if (this.playersGuess === this.winningNumber) {
+            this.pastGuesses.push(this.winningNumber);
+            confetti();
             return 'You Win!';
         }
         // Handle duplicate guess
         if (this.pastGuesses.includes(this.playersGuess)) {
             return 'You have already guessed that number.';
         }
-
         // Add to pastGuesses
         this.pastGuesses.push(this.playersGuess);
         // Handle max guesses
-        if (this.pastGuesses.length > 3) {
+        if (this.pastGuesses.length >= 5) {
             return 'You Lose.';
         }
         // Return temperature feedback
-        if(this.difference() < 10) {
+        if (this.difference() < 10) {
             return "You're burning up!"
         } else if (this.difference() < 25) {
             return "You're lukewarm."
@@ -98,17 +102,81 @@ class Game {
 
 }
 
+// Number input validation
+const input = document.getElementById("guess-input");
+input.addEventListener("input", () => {
+    const value = parseInt(input.value, 10);
+    if (value < 1) input.value = 1;
+    if (value > 100) input.value = 100;
+});
+
 function newGame() {
     return new Game();
 }
+
+
 // DOM Setup - Implement event listeners
 document.addEventListener("DOMContentLoaded", () => {
     // Initialize game state
+    let game = newGame();
     // Get DOM elements
+    const quote = document.querySelector(".quote");
+    const guessButton = document.querySelector(".guess-button");
+    const guessInput = document.getElementById("guess-input");
     // Set up event handlers for:
     // - Submit guess
+    guessButton.addEventListener("click", function () {
+        const number = Number(guessInput.value);
+        const answerBoxes = document.querySelectorAll('.answer');
+        if (game.pastGuesses.length >= 5) {
+            quote.innerHTML = "You've lost the game! Please start a new game.";
+            return;
+        }
+        if (!number || isNaN(number)) {
+            quote.innerHTML = "There is no number!";
+        } else {
+            // quote.innerHTML = game.checkGuess();
+            quote.innerHTML = game.playersGuessSubmission(number);
+            answerBoxes[game.pastGuesses.length - 1].innerHTML = number;
+        }
+        guessInput.value = '';
+    });
+
     // - Reset game
+    const resetButton = document.querySelector(".reset-btn");
+    resetButton.addEventListener("click", function () {
+
+        game = newGame();
+        const answerBoxes = document.querySelectorAll('.answer');
+        const hintBoxes = document.querySelectorAll('.hint');
+        answerBoxes.forEach(answerBox => {
+            answerBox.innerHTML = '?';
+        })
+
+        hintBoxes.forEach(hintBox => {
+            hintBox.innerHTML = '!';
+        })
+
+        guessInput.value = '';
+
+        quote.innerHTML = "(Between 1 and 100)";
+    })
     // - Show hint
+
+    const hintButton = document.querySelector(".hint-btn");
+    hintButton.addEventListener("click", function () {
+        const hint = game.provideHint();
+        const answerBoxes = document.querySelectorAll('.hint');
+        if (!game.hintUsed) {
+            answerBoxes.forEach((answerBox, i) => {
+                answerBox.innerHTML = hint[i];
+            })
+            game.hintUsed = true;
+            return;
+        }
+
+        document.querySelector('.quote').innerHTML = "You've already used your hint!";
+    })
     // Implement:
     // - Input validation
     // - Display updates
