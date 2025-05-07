@@ -1,1 +1,114 @@
-/* Write your CSS code in this file */
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+
+body {
+    font-family: 'Press Start 2P', sans-serif;
+    color: #eee;
+    background-color: #222;
+    /* background-color: #60b347; */
+}
+
+html, body {
+    min-height: 100vh; /* Make sure the body fills the screen */
+    max-height: 100vh; /* Prevent it from growing endlessly */
+    overflow-y: auto; /* Only scroll if content doesn't fit */
+    margin: 0;
+    padding: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input::placeholder {
+    font-size: 4rem;
+    text-align: center;
+}
+
+input {
+    font-size: 4rem !important;
+    text-align: center;
+
+}
+
+
+.answer, .hint {
+    background-image: url('images/blockTransparent.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    max-width: 100px;
+    margin: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 2rem !important;
+}
+
+.guess-button {
+    height: 10vh;
+    width: 40%;
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    /* CSS rules for screens smaller than or equal to 768px */
+    .answer, .hint {
+        max-width: 75px;
+        font-size: 1.2em!important;
+    }
+
+    input::placeholder {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    input {
+        font-size: 2.5rem !important;
+        text-align: center;
+
+    }
+
+    .guess-button {
+        font-size: 1.3rem;
+
+    }
+
+    .game-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 769px) {
+    /* CSS rules for screens larger than 768px */
+    .answer, .hint {
+        max-width: 110px;
+
+        input::placeholder {
+            font-size: 3rem;
+            text-align: center;
+        }
+
+        input {
+            font-size: 3rem !important;
+            text-align: center;
+
+        }
+
+        .guess-button {
+            font-size: 1.2rem;
+        }
+
+        .game-title {
+            font-size: 1.1rem;
+        }
+    }
+}
+
