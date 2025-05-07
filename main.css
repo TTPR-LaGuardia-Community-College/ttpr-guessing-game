@@ -1,1 +1,73 @@
-/* Write your CSS code in this file */
+html {
+    height: 100%;
+    background-image: url("img/wxp.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.window {
+    width: 500px;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+h2 {
+    margin: 16px;
+}
+
+h4 {
+    margin: 16px;
+    font-weight: lighter;
+}
+
+.header {
+    text-align: center;
+}
+
+.guess {
+    text-align: center;
+    margin: 32px;
+}
+
+#guessInput {
+    background: transparent;
+    border: transparent;
+    font-size: 80px;
+    padding: 50px;
+    text-align: center;
+    width: 400px;
+}
+
+.row {
+    display: flex;
+}
+
+li {
+    list-style-type: none;
+    width: 100%;
+    font-size: 200%;
+    font-family: "Pixelated MS Sans Serif";
+    font-size: 32px;
+}
+
+#guesses {
+    text-align: center;
+    margin: 7%;
+}
+
+.buttons {
+    margin: 10px;
+}
+
+.guess-buttons {
+    text-align: center;
+    margin-top: 5%;
+}
+
+#message {
+    text-align: center;
+    font-size: 150%;
+    margin: 7%;
+}

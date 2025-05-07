@@ -6,16 +6,45 @@
     <title>Guessing Game</title>
     <link rel="stylesheet" href="main.css">
     <!-- the MAIN.CSS file is linked here -->
+    <link rel="stylesheet" href="https://unpkg.com/xp.css">
+    <link rel="stylesheet" href="main.css">
   </head>
 
   <body>
-
-
-
-
-
-    <!-- <script src='js/guessing-game.js'></script> -->
-    <!-- uncomment the script tag above when you are ready to add JavaScript to your document -->
+    <div class="window">
+      <div class="title-bar">
+        <div class="title-bar-text">Guessing Game</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div class="header">
+          <h2>Guess The Number</h2>
+          <h4>Between 1 and 100</h4>
+        </div>
+        <div class="guess">
+          <label for="guessInput">
+            <input type="text" id="guessInput" inputmode="numeric" placeholder="#">
+          </label>
+        </div>
+        <div id="guesses">
+          <div class="row">
+            <li class="before">?</li>
+            <li class="before">?</li>
+            <li class="before">?</li>
+            <li class="before">?</li>
+            <li class="before">?</li>
+          </div>
+        </div>
+        <div class="guess-buttons">
+          <button class="buttons" id="submit">Submit</button>
+          <button class="buttons" id="reset">Reset</button>
+          <button class="buttons" id="hint">Hint</button>
+        </div>
+        <div id="message">Please enter a number</div>
+      </div>
+    </div>
   </body>
-
+  <script src="js/guessing-game.js"></script>
 </html>
