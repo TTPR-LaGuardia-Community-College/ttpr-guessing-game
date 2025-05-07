@@ -1,21 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guessing Game</title>
+  <link rel="stylesheet" href="https://unpkg.com/xp.css" />
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">Guessing Game</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close" id="close-btn"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <h1>Guess The Number</h1>
+      <p>Between 1 and 100</p>
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Guessing Game</title>
-    <link rel="stylesheet" href="main.css">
-    <!-- the MAIN.CSS file is linked here -->
-  </head>
+      <div class="guess-display" id="display">#</div>
 
-  <body>
+      <div class="guess-history">
+        <span class="guess">?</span>
+        <span class="guess">?</span>
+        <span class="guess">?</span>
+        <span class="guess">?</span>
+        <span class="guess">?</span>
+      </div>
 
-
-
-
-
-    <!-- <script src='js/guessing-game.js'></script> -->
-    <!-- uncomment the script tag above when you are ready to add JavaScript to your document -->
-  </body>
-
+      <div class="controls">
+        <input type="number" id="Guess" placeholder="Enter your guess" />
+        <button id="submit">Submit</button>
+        <button id="reset">Reset</button>
+        <button id="hint">Hint</button>
+      </div>
+    </div>
+  </div>
+  <script src ="js/guessing-game.js"></script>
+</body>
 </html>
