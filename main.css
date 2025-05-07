@@ -1,1 +1,52 @@
-/* Write your CSS code in this file */
+body {
+    background: url("https://wallpapercave.com/uwp/uwp3592668.jpeg") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: sans-serif;
+  }
+  
+  .window {
+    width: 600px;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin: 10px 0;
+  }
+  
+  .guess-display {
+    text-align: center;
+    font-size: 5rem;
+    font-weight: bold;
+    color: #555;
+    margin: 10px 0;
+  }
+  
+  .guess-history {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+  }
+  
+  .guess {
+    font-size: 2rem;
+    border-bottom: 2px solid black;
+    padding: 5px 10px;
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  input[type="number"] {
+    width: 120px;
+    padding: 5px;
+  }
+  
