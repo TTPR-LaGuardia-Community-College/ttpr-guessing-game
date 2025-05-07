@@ -34,7 +34,7 @@ input {
 
 
 .answer, .hint {
-    background-image: url('/images/block_tranparent.png');
+    background-image: url('/images/blockTransparent.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
