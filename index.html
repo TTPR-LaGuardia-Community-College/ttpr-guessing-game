@@ -4,24 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Guessing Game</title>
-  <link rel="stylesheet" href="https://unpkg.com/xp.css" />
-  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codedgar/Puppertino@latest/dist/puppertino.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
 </head>
-<body>
-  <div class="window">
-    <div class="title-bar">
-      <div class="title-bar-text">Guessing Game</div>
-      <div class="title-bar-controls">
-        <button aria-label="Minimize"></button>
-        <button aria-label="Maximize"></button>
-        <button aria-label="Close" id="close-btn"></button>
-      </div>
+<body class="p-layout">
+  <div id="particles-js"></div>
+  <div class="window p-card p-shadow-4">
+    <div class="mac-titlebar">
+      <button class="mac-btn red" id="close-btn"></button>
+      <button class="mac-btn yellow"></button>
+      <button class="mac-btn green"></button>
     </div>
-    <div class="window-body">
+    <div class="p-card-body">
       <h1>Guess The Number</h1>
-      <p>Between 1 and 100</p>
+      <p style="text-align:center">Between 1 and 100</p>
 
-      <div class="guess-display" id="display">#</div>
+      <input type="number" id="display" placeholder="#" min="1" max="100" />
 
       <div class="guess-history">
         <span class="guess">?</span>
@@ -32,13 +31,39 @@
       </div>
 
       <div class="controls">
-        <input type="number" id="Guess" placeholder="Enter your guess" />
-        <button id="submit">Submit</button>
-        <button id="reset">Reset</button>
-        <button id="hint">Hint</button>
+        <button id="submit" class="p-btn">Submit</button>
+        <button id="reset" class="p-btn">Reset</button>
+        <button id="hint" class="p-btn">Hint</button>
+        <button id="mute-btn" class="p-btn">🔊</button>
       </div>
     </div>
   </div>
-  <script src ="js/guessing-game.js"></script>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="assets/bg-music.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="click-sound" src="assets/click-sound.wav" preload="auto"></audio>
+
+  <script src="js/guessing-game.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+  particlesJS('particles-js', {
+    particles: {
+      number: { value: 80, density: { enable: true, value_area: 800 } },
+      color: { value: '#ffffff' },
+      shape: { type: 'circle', stroke: { width: 0, color: '#000000' }, polygon: { nb_sides: 5 } },
+      opacity: { value: 0.5 },
+      size: { value: 3, random: true },
+      line_linked: { enable: true, distance: 150, color: '#ffffff', opacity: 0.4, width: 1 },
+      move: { enable: true, speed: 6, out_mode: 'out' }
+    },
+    interactivity: {
+      detect_on: 'canvas',
+      events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+      modes: { repulse: { distance: 200 }, push: { particles_nb: 4 } }
+    },
+    retina_detect: true
+  });
+</script>
 </body>
 </html>

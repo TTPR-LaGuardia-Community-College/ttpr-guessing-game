@@ -1,18 +1,3 @@
-/* 
-
-Write your guess-game code here! Don't forget to look at the test specs as a guide. You can run the specs
-by running "testem".
-
-In this file, you will also include the event listeners that are needed to interact with your HTML file when
-a user clicks a button or adds a guess to the input field.
-
-*/
-
-/* 
-NUMBER GUESSING GAME
-Implement the missing code based on the comments
-*/
-
 // Generate random number between 1-100 (inclusive)
 function generateWinningNumber() {
   let randomNum = Math.floor(Math.random() * 100) + 1;
@@ -116,36 +101,56 @@ document.addEventListener("DOMContentLoaded", () => {
   const display = document.getElementById("display");
   const guessBoxes = document.querySelectorAll(".guess");
   const closeButton = document.getElementById("close-btn");
+  const bgMusic = document.getElementById("bg-music");
+  const muteBtn = document.getElementById("mute-btn");
+  const clickSound = document.getElementById("click-sound");
+
+  window.addEventListener("click", () => {
+    if (bgMusic.paused) {
+      bgMusic.play().catch(e => console.log("Autoplay blocked:", e));
+    }
+  }, { once: true });
+  [submitButton, resetButton, hintButton, closeButton, muteBtn].forEach(btn => {
+    if (btn) {
+      btn.addEventListener("click", () => clickSound.play());
+    }
+  });
 
   if (submitButton) {
     submitButton.addEventListener("click", () => {
-      const guess = parseInt(guessInput.value);
+      const guess = parseInt(display.value);
       if (isNaN(guess) || guess < 1 || guess > 100) {
         alert("Please enter a number between 1 and 100.");
         return;
       }
       try {
         const result = game.playersGuessSubmission(guess);
-        display.innerText = guess;
+        display.value = guess; // using input instead of innerText
 
-        // update guess boxes
         const index = game.pastGuesses.length - 1;
         if (index < guessBoxes.length) {
           guessBoxes[index].innerText = guess;
         }
 
         alert(result);
+
+        if (result === "You Win!" || result === "You Lose.") {
+          setTimeout(() => {
+            game = new Game();
+            display.value = "";
+            guessBoxes.forEach(box => box.innerText = "?");
+            alert("Game reset. New number generated.");
+          }, 1000);
+        }
       } catch (error) {
         alert(error.message);
       }
     });
   }
-
   if (resetButton) {
     resetButton.addEventListener("click", () => {
-      game = new Game(); // ✅ start new game instance
-      guessInput.value = "";
-      display.innerText = "#";
+      game = new Game();
+      display.value = "";
       guessBoxes.forEach(box => box.innerText = "?");
       alert("Game reset. New number generated.");
     });
@@ -157,10 +162,16 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Hints: " + hint.join(", "));
     });
   }
+  if (bgMusic) {
+    muteBtn.addEventListener("click", () => {
+      bgMusic.muted = !bgMusic.muted;
+      muteBtn.textContent = bgMusic.muted ? "🔇" : "🔊";
+  });
+}
 
 if (closeButton) {
   closeButton.addEventListener("click", () => {
-    alert("Closing app... (just for show 😄)");
+    alert("Closing app... Goodbye!");
     document.querySelector(".window").style.display = "none";
   });
 }
