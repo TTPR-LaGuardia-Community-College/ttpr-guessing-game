@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Number Guessing Game</title>
+  <link rel="stylesheet" href="../ttpr-guessing-game/main.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Number Guessing Game</h1>
+    <p id="explain">Enter a number between 1 and 100</p>
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Guessing Game</title>
-    <link rel="stylesheet" href="main.css">
-    <!-- the MAIN.CSS file is linked here -->
-  </head>
+    <input type="number" id="guessInput" placeholder="Enter your guess" min="1" max="100">
+    <div class="buttons">
+      <button id="submitBtn">Submit</button>
+      <button id="hintBtn">Hint</button>
+      <button id="resetBtn">Reset</button>
+    </div>
 
-  <body>
+    <p id="result" class="result-text"></p>
+    <p>Past Guesses: <span id="pastGuesses"></span></p>
+  </div>
 
-
-
-
-
-    <!-- <script src='js/guessing-game.js'></script> -->
-    <!-- uncomment the script tag above when you are ready to add JavaScript to your document -->
-  </body>
-
+  <script src="../ttpr-guessing-game/js/guessing-game.js"></script>
+</body>
 </html>
