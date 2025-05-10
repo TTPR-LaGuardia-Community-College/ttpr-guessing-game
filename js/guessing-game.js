@@ -1,78 +1,117 @@
-/* 
-
-Write your guess-game code here! Don't forget to look at the test specs as a guide. You can run the specs
-by running "testem".
-
-In this file, you will also include the event listeners that are needed to interact with your HTML file when
-a user clicks a button or adds a guess to the input field.
-
-*/
-
-/* 
-NUMBER GUESSING GAME
-Implement the missing code based on the comments
-*/
-
 // Generate random number between 1-100 (inclusive)
 function generateWinningNumber() {
-  // Return random integer
+  return Math.floor(Math.random() * 100) + 1;
 }
 
-// Shuffle array using Fisher-Yates algorithm
+// Fisher-Yates shuffle
 function shuffle(array) {
-  // Modify array in place and return it
+  let m = array.length, i;
+  while (m) {
+    i = Math.floor(Math.random() * m--);
+    [array[m], array[i]] = [array[i], array[m]];
+  }
+  return array;
 }
 
 class Game {
   constructor() {
-    // Initialize properties:
-    // - playersGuess (current guess)
-    // - pastGuesses (array of previous guesses)
-    // - winningNumber (generated number)
+    this.playersGuess = null;
+    this.pastGuesses = [];
+    this.winningNumber = generateWinningNumber();
   }
 
-  // Return absolute difference between guess and winning number
   difference() {
-    // Calculate and return difference
+    return Math.abs(this.playersGuess - this.winningNumber);
   }
 
-  // Return true if guess is lower than winning number
   isLower() {
-    // Return boolean comparison
+    return this.playersGuess < this.winningNumber;
   }
 
-  // Validate and process guess
   playersGuessSubmission(num) {
-    // Throw error if invalid number
-    // Set playersGuess
-    // Return checkGuess result
+    if (typeof num !== 'number' || num < 1 || num > 100) {
+      throw 'That is an invalid guess.';
+    }
+    this.playersGuess = num;
+    return this.checkGuess();
   }
 
-  // Evaluate guess and return feedback message
   checkGuess() {
-    // Handle win condition
-    // Handle duplicate guess
-    // Add to pastGuesses
-    // Handle max guesses
-    // Return temperature feedback
+    if (this.playersGuess === this.winningNumber) {
+      return 'You Win!';
+    } else if (this.pastGuesses.includes(this.playersGuess)) {
+      return 'You have already guessed that number.';
+    } else {
+      this.pastGuesses.push(this.playersGuess);
+      if (this.pastGuesses.length === 5) {
+        return 'You Lose.';
+      }
+
+      let diff = this.difference();
+      if (diff < 10) return "You're burning up!";
+      if (diff < 25) return "You're lukewarm.";
+      if (diff < 50) return "You're a bit chilly.";
+      return "You're ice cold!";
+    }
   }
 
-  // Generate array with 3 numbers (winning + 2 random)
   provideHint() {
-    // Create array and shuffle
+    const hintArray = [this.winningNumber, generateWinningNumber(), generateWinningNumber()];
+    return shuffle(hintArray);
   }
 }
 
-// DOM Setup - Implement event listeners
+// DOM Setup
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize game state
-  // Get DOM elements
-  // Set up event handlers for:
-  // - Submit guess
-  // - Reset game
-  // - Show hint
-  // Implement:
-  // - Input validation
-  // - Display updates
-  // - Game state management
+  let game = new Game();
+
+  // DOM elements
+  const guessInput = document.getElementById("guess-input");
+  const submitButton = document.getElementById("submit-btn");
+  const resetButton = document.getElementById("reset-btn");
+  const hintButton = document.getElementById("hint-btn");
+  const feedback = document.getElementById("feedback");
+  const attempts = document.getElementById("attempts");
+
+  // Initial UI state
+  attempts.textContent = `Attempts left: ${5}`;
+
+  submitButton.addEventListener("click", () => {
+    const guess = Number(guessInput.value);
+    try {
+      const result = game.playersGuessSubmission(guess);
+      feedback.textContent = result;
+
+      if (result === "You Win!" || result === "You Lose.") {
+        disableGame();
+      }
+
+      attempts.textContent = `Attempts left: ${5 - game.pastGuesses.length}`;
+    } catch (err) {
+      feedback.textContent = err;
+    }
+
+    guessInput.value = "";
+    guessInput.focus();
+  });
+
+  resetButton.addEventListener("click", () => {
+    game = new Game();
+    feedback.textContent = "";
+    attempts.textContent = `Attempts left: 5`;
+    guessInput.disabled = false;
+    submitButton.disabled = false;
+    guessInput.value = "";
+    guessInput.focus();
+  });
+
+  hintButton.addEventListener("click", () => {
+    const hints = game.provideHint();
+    feedback.textContent = `💡 Hint: One of these is correct → ${hints.join(', ')}`;
+  });
+
+  function disableGame() {
+    guessInput.disabled = true;
+    submitButton.disabled = true;
+  }
 });
