@@ -1,1 +1,61 @@
-/* Write your CSS code in this file */
+@font-face {
+    font-family: 'scramble';
+    src: url('scramblemixed-font/Scramblemixed-YEdO.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'scramble', sans-serif;
+    font-size: xx-large;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    gap: 50px;
+    background-image: url('img/background.jpg');
+    background-size: cover;
+    min-height: 100vh;
+    /* Add a subtle overlay for readability */
+    background-color: rgba(255,255,255,0.7);
+    background-blend-mode: luminosity;
+}
+
+.bnt {
+    font-family: 'scramble', sans-serif;
+    font-size: large;
+    font-weight: bold;
+    height: 50px;
+    width: 110px;
+    background: linear-gradient(90deg, rgb(245, 226, 203) 70%, #fff8ee 100%);
+    border: solid #222 3px;
+    border-radius: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    box-shadow: 2px 2px 8px #8884;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+.bnt:hover {
+    background: linear-gradient(90deg, #ffe4c4 70%, bisque 100%);
+    transform: scale(1.05);
+}
+
+#numberGuess {
+    border: solid #222 6px;
+    box-shadow: 8px 4px 16px #2224;
+    margin: 40px;
+    background-color: #fff8ee;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+#main-div {
+    border-radius: 16px;
+    border: solid whitesmoke 4px;
+    margin: 60px;
+    padding: 60px;
+    background-color: #fff8ee;
+    box-shadow: 0 8px 32px #2222;
+}
