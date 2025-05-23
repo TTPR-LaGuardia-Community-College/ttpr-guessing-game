@@ -1,21 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<head>
+  <title>🎀 Number Guessing Game 🎀</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: #ffe4f0;
+      color: #d63384;
+      text-align: center;
+      padding: 2rem;
+    }
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Guessing Game</title>
-    <link rel="stylesheet" href="main.css">
-    <!-- the MAIN.CSS file is linked here -->
-  </head>
+    h1 {
+      color: #ff69b4;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
 
-  <body>
+    input[type="number"] {
+      padding: 0.5rem;
+      border: 2px solid #ffb6c1;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      width: 80px;
+      text-align: center;
+      background: #fff0f5;
+      color: #d63384;
+    }
 
+    button {
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 20px;
+      font-size: 1rem;
+      background-color: #ffb6c1;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 2px 6px #d98ca7;
+      transition: background 0.3s ease;
+    }
 
+    button:hover {
+      background-color: #ff69b4;
+    }
 
+    .feedback {
+      margin-top: 1.5rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #c71585;
+    }
 
+    #guesses {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #b03060;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎀 Guess a number between 1 and 100 🎀</h1>
+  <input id="guess-input" type="number" min="1" max="100" />
+  <br/>
+  <button id="submit-btn">💌 Submit Guess</button>
+  <button id="hint-btn">🎁 Get Hint</button>
+  <button id="reset-btn">🔄 Reset Game</button>
 
-    <!-- <script src='js/guessing-game.js'></script> -->
-    <!-- uncomment the script tag above when you are ready to add JavaScript to your document -->
-  </body>
+  <div class="feedback" id="feedback"></div>
+  <div id="guesses"></div>
 
+  <script src="./js/guessing-game.js"></script>
+  <script>
+    let game = newGame();
+
+    document.getElementById('submit-btn').addEventListener('click', () => {
+      const input = document.getElementById('guess-input').value;
+      const guess = parseInt(input);
+      try {
+        const message = game.playersGuessSubmission(guess);
+        document.getElementById('feedback').textContent = message;
+        document.getElementById('guesses').textContent = `🌸 Past guesses: ${game.pastGuesses.join(', ')}`;
+      } catch (error) {
+        document.getElementById('feedback').textContent = error;
+      }
+    });
+
+    document.getElementById('hint-btn').addEventListener('click', () => {
+      const hints = game.provideHint();
+      document.getElementById('feedback').textContent = `💡 One of these is the answer: ${hints.join(', ')}`;
+    });
+
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      game = newGame();
+      document.getElementById('feedback').textContent = '';
+      document.getElementById('guesses').textContent = '';
+      document.getElementById('guess-input').value = '';
+    });
+  </script>
+</body>
 </html>
